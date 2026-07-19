@@ -76,7 +76,7 @@
         {/each}
     </select>
     <span
-        >Don't see your game in the list? If you just saved it, you might need
+        >Don't see your game in the list or is it outdated? If you just saved it, you might need
         to reload the page first. Otherwise:</span
     >
     <button onclick={addGame}>Add new game</button>

@@ -159,6 +159,10 @@ async function moveImage(from: string, to: string) {
         try {
             await reconnectClient();
             console.log("moving", from, to);
+            await client.ensureDir(path.dirname(from));
+            await reconnectClient();
+            await client.ensureDir(path.dirname(to));
+            await reconnectClient();
             await client.rename(from, to);
             resolve();
         } catch (error) {
