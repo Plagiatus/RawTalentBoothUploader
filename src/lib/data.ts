@@ -37,6 +37,10 @@ export const universities: University[] = [
         id: "fabw",
         name: "Filmakademie Baden-Württemberg",
     }, {
+        url: "https://www.fh-muenster.de/de/",
+        id: "fhms",
+        name: "FH Münster",
+    }, {
         url: "https://hdm-stuttgart.de/",
         id: "hdm",
         name: "Hochschule der Medien Stuttgart",
