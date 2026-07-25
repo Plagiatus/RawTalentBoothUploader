@@ -58,6 +58,9 @@
         if (!selectedGame?.links) return;
         selectedGame?.links.splice(index, 1);
     }
+    let textCounter: number = $derived(
+        selectedGame?.shortDescription.length ?? 0,
+    );
 </script>
 
 <h1>RAWTalent upload page</h1>
@@ -76,8 +79,8 @@
         {/each}
     </select>
     <span
-        >Don't see your game in the list or is it outdated? If you just saved it, you might need
-        to reload the page first. Otherwise:</span
+        >Don't see your game in the list or is it outdated? If you just saved
+        it, you might need to reload the page first. Otherwise:</span
     >
     <button onclick={addGame}>Add new game</button>
 {/if}
@@ -132,18 +135,25 @@
                 </span>
             </div>
             <div class="input-group">
-                <label for="shortDescription"> Description </label>
+                <label for="shortDescription">
+                    Description
+                    <span id="text-counter" class:error={true}>{textCounter} characters</span>
+                </label>
                 <textarea
                     name="shortDescription"
                     id="shortDescription"
                     bind:value={selectedGame.shortDescription}
+                    maxlength="400"
                     required
-                ></textarea>
+                >
+                </textarea>
                 <span class="info">
                     A short description of what your game is. Don't go into too
                     much detail, it's just supposed to give some additional info
                     about the game to make people go to your actual game pages
-                    (steam, itch, etc.)
+                    (steam, itch, etc.). <strong
+                        >Aim for around 150-250 characters.</strong
+                    >
                 </span>
             </div>
 
@@ -398,5 +408,9 @@
         font-size: smaller;
         color: rgb(61, 61, 61);
         font-style: italic;
+    }
+    #text-counter {
+        font-weight: lighter;
+        font-size: smaller;
     }
 </style>
