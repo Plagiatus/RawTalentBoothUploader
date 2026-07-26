@@ -28,6 +28,7 @@
             event: selectedEvent,
             tags: [] as string[],
             links: [] as string[],
+            shortDescription: "",
         } as RTGame & { prevId: number });
         selectedGameId = 999;
     }
