@@ -1,16 +1,18 @@
 import { Client } from "basic-ftp";
 import { mkdirSync, renameSync, rmSync, writeFileSync, type PathLike } from "fs";
-import { FTP_PORT, FTP_PW, FTP_SERVER, FTP_USER } from "$env/static/private";
+import { FTP_PORT, FTP_PW, FTP_SERVER, FTP_USER, GITHUB_TOKEN } from "$env/static/private";
 import { Database } from "$lib/db.js";
 import type { PageServerLoad } from "./$types.js";
 import { fail } from "@sveltejs/kit";
 import type { RTGame } from "../types.js";
 import path from "path";
 import Stream from "stream";
+import { Octokit } from "@octokit/core";
 
 const db = new Database();
 const client = new Client();
 // client.ftp.verbose = true;
+const gh = new Octokit({auth: GITHUB_TOKEN})
 
 export const load: PageServerLoad = async ({ }) => {
     try {
@@ -122,6 +124,7 @@ export const actions = {
         }
 
         db.addOrModifyGame(game, prevId);
+        triggerGithubAction();
     }
 }
 
@@ -200,4 +203,12 @@ async function reconnectClient() {
         secure: true,
         port: parseInt(FTP_PORT),
     })
+}
+
+async function triggerGithubAction() {
+    gh.request("POST /repos/{owner}/{repo}/dispatches", {
+        event_type: "content_update",
+        owner: "Plagiatus",
+        repo: "RAWTalentBoothWebsite"
+    });
 }

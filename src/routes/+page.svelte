@@ -66,6 +66,11 @@
 
 <h1>RAWTalent upload page</h1>
 
+<p id="notice">
+    ℹ️ <strong>Info:</strong> It will take up to 20 minutes for your changes to
+    be visible on the live website. If not, contact <code>@plagiatus</code> on discord.
+</p>
+
 <select name="event" id="event" bind:value={selectedEvent}>
     <option value="" disabled selected>Select Event</option>
     {#each data.events as event}
@@ -274,7 +279,8 @@
             </div>
             <div class="input-group">
                 <label for="aiDisclaimer"
-                    >AI Disclosure<br>AI was used in the creation of the game for the following:
+                    >AI Disclosure<br />AI was used in the creation of the game
+                    for the following:
                 </label>
                 <textarea
                     name="aiDisclaimer"
@@ -402,6 +408,10 @@
 {/if}
 
 <style>
+    #notice {
+        background-color: rgb(195, 214, 250);
+        padding: 1em;
+    }
     div.input-group {
         display: flex;
         flex-direction: column;
