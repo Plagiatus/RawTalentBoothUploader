@@ -69,8 +69,8 @@ export const actions = {
         if (data.has("links"))
             game.links = data.getAll("links") as string[];
 
-        // other    
-        game.aiUsed = data.has("aiUsed")
+        // other
+        if (data.has("aiDisclaimer")) game.aiDisclaimer = data.get("aiDisclaimer") as string;
 
         // files
         if (!game.images) {
@@ -154,7 +154,7 @@ async function moveImage(from: string, to: string) {
     // } catch (error) {
     //     console.error(error);
     // }    
-    
+
     return new Promise<void>(async (resolve, reject) => {
         try {
             await reconnectClient();

@@ -12,7 +12,7 @@ type RTGame = {
     links: string[],
     gameEngine: GameEngine | string,
     university: string,
-    aiUsed?: boolean,
+    aiDisclaimer?: string,
     ageRating: string,
     images: {
         cover: string,

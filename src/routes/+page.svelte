@@ -138,7 +138,9 @@
             <div class="input-group">
                 <label for="shortDescription">
                     Description
-                    <span id="text-counter" class:error={true}>{textCounter} characters</span>
+                    <span id="text-counter" class:error={true}
+                        >{textCounter} characters</span
+                    >
                 </label>
                 <textarea
                     name="shortDescription"
@@ -271,17 +273,20 @@
                 <span class="info">Which University is your team from?</span>
             </div>
             <div class="input-group">
-                <span>AI Disclosure</span>
-                <label for="aiUsed"
-                    >AI was used in the creation of the game
-                    <input
-                        name="aiUsed"
-                        id="aiUsed"
-                        bind:checked={selectedGame.aiUsed}
-                        type="checkbox"
-                    />
+                <label for="aiDisclaimer"
+                    >AI Disclosure<br>AI was used in the creation of the game for the following:
                 </label>
-                <span class="info"></span>
+                <textarea
+                    name="aiDisclaimer"
+                    id="aiDisclaimer"
+                    bind:value={selectedGame.aiDisclaimer}
+                >
+                </textarea>
+                <span class="info"
+                    >Be short but informative, list what you used it for and in
+                    what capacity (e.g. "3D Art: generated background textures"
+                    or "Dialogue: Proofread")</span
+                >
             </div>
             <div class="input-group">
                 <label for="ageRating">Age Rating</label>
